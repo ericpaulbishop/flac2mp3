@@ -1,0 +1,21 @@
+#!/bin/sh
+
+in_file="$1"
+out_file="$2"
+
+if [ -z "$in_file" ] || [ -z "$out_file" ] ; then
+
+	echo "USAGE: $0 [INPUT_FLAC_FILE] [OUTPUT_MP3_FILE]"
+	exit
+fi
+
+if [ ! -f "$in_file" ] ; then
+	echo "ERROR: Input FLAC file does not exist"
+	exit
+fi
+
+
+
+flac -cd "$in_file" | lame -b 320 -h - "$out_file" 
+
+

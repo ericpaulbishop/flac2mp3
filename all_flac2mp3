@@ -1,0 +1,28 @@
+#!/bin/sh
+
+flac_dir="$1"
+
+if [ "$1" = "-h" ] || [ "$1" = "--help" ] ; then
+
+	echo "USAGE: $0 [DIRECTORY_CONTAING_FLAC_FILES]"
+	exit
+fi
+
+
+if [ ! -d "$flac_dir" ] ; then
+	flac_dir="."
+fi
+
+flac_files=$(ls "$flac_dir"/*.[Ff][Ll][Aa][Cc])
+if [ -z "$flac_files" ] ; then
+	echo "ERROR: Directory "$flac_dir" contains no .flac files"
+	exit
+fi
+
+
+
+for file in "$flac_dir"/*.[Ff][Ll][Aa][Cc]; do 
+	flac -cd "$file" | lame -h - "${file%.flac}.mp3"; 
+done
+
+
