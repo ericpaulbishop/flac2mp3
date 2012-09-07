@@ -1,12 +1,20 @@
-# flac2mp3
+# Flac to Mp3 conversion utilities
 
 These are some (very) simple shell scripts useful for converting flac files to mp3 files.  Both the flac utility and LAME need to be installed for this to work.  This just creates a simpler syntax so I don't need to remember flac/LAME syntax every time I want to convert some files.  Mp3s are, by default, encoded at 320bps.  These are just shell scripts, so you can simply copy these to your /usr/bin directory to use.
 
 There are two scripts. flac2mp3 is appropriate for converting a single flac file to an mp3 file, whila all\_flac3mp3 converts all flac files in a directory to mp3 files.  
 
-The first argument for flac2mp3 is the source file, the second argument is the destination mp3 file: flac2mp3 \[INPUT\_FLAC\_FILE\] \[OUTPUT\_\MP3\_FILE\]
+### flac2mp3
 
-The all\_flac2mp3 command takes only one parameter, the directory containg files to convert, and this is optional.  If this parameter is omitted, all flac files in the current directory will be converted to .mp3 files: all\_flac2mp3 \[DIRECTORY\_CONTAING\_FLAC\_FILES\]
+The first argument for flac2mp3 is the source file, the second argument is the destination mp3 file: 
+
+flac2mp3 \[INPUT\_FLAC\_FILE\] \[OUTPUT\_MP3\_FILE\]
+
+### all\_flac2mp3
+
+The all\_flac2mp3 command takes only one parameter, the directory containg files to convert, and this is optional.  If this parameter is omitted, all flac files in the current directory will be converted to .mp3 files: 
+
+all\_flac2mp3 \[DIRECTORY\_CONTAING\_FLAC\_FILES\]
 
 
 
