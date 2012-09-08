@@ -1,0 +1,13 @@
+#!/bin/sh
+
+scripts="all_flac2mp3 flac2mp3 rip_flac rip_mp3"
+
+apt-get install lame flac ripit
+
+for script in $scripts ; do
+	cp "$script" /usr/bin
+	chmod 755  "/usr/bin/$script"
+	chown root "/usr/bin/$script"
+done
+
+
