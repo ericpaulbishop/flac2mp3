@@ -22,7 +22,18 @@ fi
 
 
 for file in "$flac_dir"/*.[Ff][Ll][Aa][Cc]; do 
-	flac -cd "$file" | lame -h - "${file%.flac}.mp3"; 
+	
+	title=`metaflac        "$file" --show-tag=TITLE       | sed s/.*=//g`
+	album=`metaflac        "$file" --show-tag=ALBUM       | sed s/.*=//g`
+	artist=`metaflac       "$file" --show-tag=ARTIST      | sed s/.*=//g`
+	genre=`metaflac        "$file" --show-tag=GENRE       | sed s/.*=//g`
+	date=`metaflac         "$file" --show-tag=DATE        | sed s/.*=//g`
+	track_number=`metaflac "$file" --show-tag=TRACKNUMBER | sed s/.*=//g`
+
+	flac -cd "$file" | lame -h - "${file%.[Ff][Ll][Aa][Cc]}.mp3"; 
+
+	id3 -t "$title" -A "$album" -a "$artist" -g "$genre" -y "$date" -T "$track_number" "${file%.[Ff][Ll][Aa][Cc]}.mp3"
+
 done
 
 

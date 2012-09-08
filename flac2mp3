@@ -14,8 +14,14 @@ if [ ! -f "$in_file" ] ; then
 	exit
 fi
 
+title=`metaflac        "$in_file" --show-tag=TITLE       | sed s/.*=//g`
+album=`metaflac        "$in_file" --show-tag=ALBUM       | sed s/.*=//g`
+artist=`metaflac       "$in_file" --show-tag=ARTIST      | sed s/.*=//g`
+genre=`metaflac        "$in_file" --show-tag=GENRE       | sed s/.*=//g`
+date=`metaflac         "$in_file" --show-tag=DATE        | sed s/.*=//g`
+track_number=`metaflac "$in_file" --show-tag=TRACKNUMBER | sed s/.*=//g`
 
-
-flac -cd "$in_file" | lame -b 320 -h - "$out_file" 
+flac -cd "$in_file" | lame -b 320 -h - "$out_file"
+id3 -t "$title" -A "$album" -a "$artist" -g "$genre" -y "$date" -T "$track_number" "$out_file"
 
 
