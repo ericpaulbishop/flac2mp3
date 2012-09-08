@@ -13,5 +13,6 @@ if [ ! -d "$parent_dir" ] ; then
 	parent_dir="."
 fi
 
-ripit --nointeraction --coder 2 --outputdir "$parent_dir"
+ripit --nointeraction --coder 2 --outputdir "$parent_dir" --playlist 0
+
 

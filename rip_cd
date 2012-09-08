@@ -1,0 +1,33 @@
+#!/bin/sh
+
+parent_dir="$1"
+
+if [ "$1" = "-h" ] || [ "$1" = "--help" ] ; then
+
+	echo "USAGE: $0 [PARENT_DIR_OF_ALBUM_DIRECTORY_TO_BE_CREATED]"
+	exit
+fi
+
+
+if [ ! -d "$parent_dir" ] ; then
+	parent_dir="."
+fi
+
+cur_dir=$(pwd)
+
+rand_str=$( </dev/urandom tr -dc a-z | head -c 30 )
+rand_dir="$parent_dir/$rand_str"
+mkdir -p "$rand_dir"
+
+ripit --nointeraction --coder 2 --outputdir "$rand_dir" --playlist 0
+cd "$rand_dir/"*
+all_flac2mp3
+mkdir flac
+mv *.flac flac
+cd ..
+mv * ..
+
+cd "$cur_dir"
+
+rmdir "$rand_dir"
+

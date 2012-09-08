@@ -1,6 +1,6 @@
 #!/bin/sh
 
-scripts="all_flac2mp3 flac2mp3 rip_flac rip_mp3"
+scripts="all_flac2mp3 flac2mp3 rip_flac rip_mp3 rip_cd"
 
 apt-get install lame flac ripit
 
