@@ -1,0 +1,17 @@
+#!/bin/sh
+
+parent_dir="$1"
+
+if [ "$1" = "-h" ] || [ "$1" = "--help" ] ; then
+
+	echo "USAGE: $0 [PARENT_DIR_OF_ALBUM_DIRECTORY_TO_BE_CREATED]"
+	exit
+fi
+
+
+if [ ! -d "$parent_dir" ] ; then
+	parent_dir="."
+fi
+
+ripit --nointeraction --coder 2 --outputdir "$parent_dir"
+
